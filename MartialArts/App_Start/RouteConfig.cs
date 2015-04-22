@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace MarsalArts
+namespace MartialArts
 {
     public class RouteConfig
     {
@@ -17,10 +17,10 @@ namespace MarsalArts
                  "Default",
                 "{controller}/{action}/{id}",
                  new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-                , new[] { "MarsalArts.Controllers" }
+                , new[] { "MartialArts.Controllers" }//NameSpace
             );
             routes.MapRoute(
-                 "Admin_defaulter",
+                 "Admin_defaulte",
                 "{controller}/{action}/{id}",
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );

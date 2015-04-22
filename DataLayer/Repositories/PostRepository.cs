@@ -44,5 +44,21 @@ namespace DataLayer.Repositories
         {
             _context.Dispose();
         }
+
+
+        public void DeletePost(int? postId)
+        {
+            var postToRemove = _posts.FirstOrDefault(p => p.PostId == postId);
+            _posts.Remove(postToRemove);
+            _context.SaveChanges();
+        }
+
+        public async Task<int> EditPost (int? postId)
+        {
+            var postToUpdate = _posts.FirstOrDefault(p => p.PostId == postId);
+            _context.Entry(postToUpdate).State = EntityState.Modified;
+            return await _context.SaveChangesAsync();
+        }
+
     }
 }

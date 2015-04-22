@@ -9,5 +9,7 @@ namespace DataLayer.Repositories
         Task<List<Post>> GetAllPostsAsync();
         Task<int> AddNewPostAsync(Post post);
         Post GetPost(int? id);
+        void DeletePost(int? postId);
+        Task<int> EditPost(int? postId);
     }
 }

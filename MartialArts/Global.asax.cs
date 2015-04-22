@@ -6,20 +6,26 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using DataLayer;
+using DataLayer.Infrastructure;
+using DataLayer.Migrations;
 using DomainModel;
-using MarsalArts.Infrastructure;
+using MartialArts.Infrastructure;
 using Ninject;
 
-namespace MarsalArts
+namespace MartialArts
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        public static List<Post> Posts = new List<Post>();
+        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        {
+            filters.Add(new HandleErrorAttribute());
+        }
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ControllerBuilder.Current.SetControllerFactory(new CustomControllerFactory());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<MartialArtsContext,Configuration>());
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MartialArtsContext>());
         }
     }
