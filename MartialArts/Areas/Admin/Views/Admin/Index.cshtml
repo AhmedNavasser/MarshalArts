@@ -1,0 +1,14 @@
+﻿@model DomainModel.User
+<div id="user-info">
+    <fieldset>
+        <legend>اطلاعات کاربر</legend>
+        @using (@Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+            <p>نام کاربری @Html.TextBoxFor(u => u.UserName, new {@class = "form-control"})</p>
+            <p>رمز عبور @Html.PasswordFor(u => u.Password, new {@class = "form-control"})</p>
+            <input type="submit" value="ورود" class="btn btn-success" style="width: 150px"/>
+        }
+    </fieldset>
+</div>

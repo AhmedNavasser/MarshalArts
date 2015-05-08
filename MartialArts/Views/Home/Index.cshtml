@@ -1,0 +1,63 @@
+﻿@using MartialArts.Infrastructure.Helpers
+@model IEnumerable<DomainModel.Post>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@section scripts{
+    <script>
+        $(function () {
+            $.ajax({
+                url: '/Home/Index',
+                contentType: 'application/html; charset=utf-8',
+                type: "GET",
+                dataType: 'html'
+            }).success(function (result) {
+                $("#post-content").html(result);
+            });
+        });
+    </script>
+}
+
+
+
+<div id="slider1_container" class="row container">
+    گالری عکس
+    <div class="photo-gallery col-lg-12">
+
+
+        @Html.Image(@Url.Content("~/Content/Images/Kg.jpg"), "Panda", new { @style = "height: 400px; width: 300px;" })
+    </div>
+</div>
+
+<div id="all-content" class="row container">
+    <div id="exhibition" class="col-lg-2">
+
+        جشنواره
+    </div>
+
+     
+    <div id="post-content" class="col-lg-8">
+        @Html.Partial("_PostContent", Model)
+
+
+</div>
+
+        <div id="content-title" class="col-lg-2">
+            عناوین مطالب
+            <table class="table">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.ActionLink(item.PostTitle, "PostDetails", new { id = item.PostId })</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+
+<div class="row">&copy;@DateTime.Now.Year باشگاه الغدیر</div>
+
+
+

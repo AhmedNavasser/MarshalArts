@@ -1,0 +1,24 @@
+﻿@model IEnumerable<DomainModel.Post>
+
+    @foreach (var item in Model)
+    {
+        <div id="post">
+            <table class="table">
+                <tr>
+                    <td class="text-right" id="post-title">
+                        @Html.ActionLink(item.PostTitle, "PostDetails", null, new {id = item.PostId}, new {@style = "color:cornflowerblue;text-decoration:none"})
+                    </td>
+                    <td class="text-left">
+                        @Html.DisplayFor(itemData => item.PublishDate)
+                    </td>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                    <td>
+                        @Html.Raw(item.Content)
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }

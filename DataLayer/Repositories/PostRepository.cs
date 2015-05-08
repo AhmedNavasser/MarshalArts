@@ -25,7 +25,7 @@ namespace DataLayer.Repositories
 
         public async Task<List<Post>> GetAllPostsAsync()
         {
-            return await _posts.ToListAsync();
+            return await _posts.OrderByDescending(p => p.PostId).ToListAsync();
         }
 
         public Post GetPost(int? id)

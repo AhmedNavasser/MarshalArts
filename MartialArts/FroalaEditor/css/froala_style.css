@@ -1,0 +1,68 @@
+/*!
+ * froala_editor v1.2.6 (http://editor.froala.com)
+ * License http://editor.froala.com/license
+ * Copyright 2014-2015 Froala Labs
+ */
+.froala-view { line-height: 140%; }
+
+.froala-view ul,
+.froala-view ol,
+ul.fr-tag,
+ol.fr-tag { padding-left: 25px; }
+
+.froala-view p,
+p.fr-tag { margin: 0 0 10px; }
+
+.froala-view h1,
+h1.fr-tag {
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.froala-view h2,
+h2.fr-tag {
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.froala-view h3,
+h3.fr-tag {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.froala-view h4,
+h4.fr-tag {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.froala-view h5,
+h5.fr-tag {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.froala-view h6,
+h6.fr-tag {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}

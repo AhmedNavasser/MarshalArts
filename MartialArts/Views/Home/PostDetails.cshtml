@@ -1,0 +1,13 @@
+﻿@model DomainModel.Post
+
+@{
+    ViewBag.Title = "PostDetails";
+}
+
+<div class="panel">
+    <h2 class="panel-heading">@Html.DisplayNameFor(model => model.PostTitle) : @Html.DisplayFor(item => Model.PostTitle)</h2>
+    <hr />
+    <article>@Html.Raw(Model.Content)</article>
+    <hr />
+    <p class="text-left">@Html.DisplayNameFor(item => Model.PublishDate) : @Html.DisplayFor(item => Model.PublishDate)</p>
+</div>

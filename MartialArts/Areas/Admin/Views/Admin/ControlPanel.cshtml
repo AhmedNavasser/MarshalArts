@@ -1,0 +1,26 @@
+﻿@model MartialArts.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "ControlPanel";
+}
+
+<div>
+    <h2>به پنل مدیریت خوش آمدید</h2>
+</div>
+
+<div id="user-information">
+    <p>خوش آمدید @Model.UserName</p>
+    <hr/>
+    <p>امروز @DateTime.Now</p>
+</div>
+
+<div id="control-panel">
+    @Html.ActionLink("ایجاد پست", "CreateNewPost", "Post", new {area = "Admin"}, new {@class = "btn btn-info"})
+    @Html.ActionLink("ویرایش پست", "EditPost", "Post", new {area = "Admin"}, new {@class = "btn btn-warning"})
+    @Html.ActionLink("حذف پست", "Index", "Admin", new {@class = "btn btn-danger"})
+</div>
+
+<div id="Exhibition-control-panel">
+    @Html.ActionLink("ایجاد جشنواره", "CreateNewExhibition", "Exhibition", new {area = "Admin"}, new {@class = "btn btn-info"})
+    @Html.ActionLink("ویرایش جشنواره", "EditPost", "Post", new {area = "Admin"}, new {@class = "btn btn-warning"})
+    @Html.ActionLink("حذف جشنواره", "Index", "Admin", new {@class = "btn btn-danger"})
+</div>

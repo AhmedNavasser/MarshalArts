@@ -1,0 +1,181 @@
+﻿body {
+    background-image: url('Images/halftone5.jpg');
+    direction: rtl;
+    font-family: 'B Mitra';
+    font-size: 20px;
+    padding-bottom: 20px;
+    padding-top: 50px;
+}
+
+#header {
+    background-color: #243044;
+    height: 45px;
+    margin-top: -30px;
+    padding: 4px 0 0 0;
+    width: 100%;
+}
+
+a {
+    font-family: 'B Yekan';
+    font-size: 20px;
+}
+
+.link {
+    background-color: deepskyblue;
+    border-radius: 3px;
+    color: white;
+    margin-right: 5px;
+    padding: 4px 18px;
+    position: relative;
+    text-decoration: none;
+    top: 4px;
+}
+
+.link:hover {
+    background-color: dodgerblue;
+    color: white;
+    margin-right: 5px;
+    margin-top: 4px;
+    padding: 4px 18px;
+    text-decoration: none;
+}
+
+.home {
+    background-color: darkorchid;
+    border-radius: 3px;
+    color: white;
+    margin-right: 5px;
+    padding: 4px 18px;
+    position: relative;
+    text-decoration: none;
+    top: 4px;
+}
+
+.home:hover {
+    background-color: blueviolet;
+    color: white;
+    margin-right: 5px;
+    margin-top: 4px;
+    padding: 4px 18px;
+    text-decoration: none;
+}
+
+/* Set padding to keep content from hitting the edges */
+
+.body-content {
+    font-family: 'B Mitra';
+    font-size: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+
+input,
+select,
+textarea {
+    font-family: 'Tahoma';
+    max-width: 280px;
+}
+
+#slider1_container {
+    background-color: #FFFAFA;
+    border: 1px solid #F5F4EF;
+    border-radius: 4px;
+}
+
+#exhibition {
+    background-color: #FFFAFA;
+    border: 1px solid #F5F4EF;
+    border-radius: 4px;
+    /*box-shadow: 0 10px 6px -6px #777;*/
+}
+
+#post-content {
+    background-color: #FFFAFA;
+    border: 1px solid #F5F4EF;
+    border-radius: 4px;
+}
+
+#content-title {
+    background-color: #FFFAFA;
+    border: 1px solid #F5F4EF;
+    border-radius: 4px;
+    /*box-shadow: 0 10px 6px -6px #777;*/
+}
+
+#content-title a {
+    font-family: 'B Yekan';
+    font-size: 12px;
+}
+
+#post {
+    background-color: white;
+    border: 1px solid darkgray;
+    border-radius: 6px;
+    font-family: B Yekan;
+    font-size: 12px;
+    margin: 4px;
+}
+
+
+
+#user-info {
+    background-color: #F5F4EF;
+    border: 1px solid #777777;
+    border-radius: 6px;
+    height: auto;
+    margin: 10% 30%;
+    padding: 20px;
+    position: absolute;
+    width: 250px;
+}
+
+#user-information {
+    background-color: #F5F4EF;
+    border: 1px solid #777777;
+    border-radius: 6px;
+    height: auto;
+    height: auto;
+    padding: 20px;
+    width: 250px;
+    width: 600px;
+}
+
+#control-panel {
+    align-content: center;
+    background-color: #F5F4EF;
+    border: 1px solid #777777;
+    border-radius: 6px;
+    display: block;
+    height: auto;
+    margin-top: 50px;
+    padding: 20px;
+    width: 600px;
+}
+
+#control-panel a {
+    height: 40px;
+    margin: 10px;
+    padding: 5px;
+    width: 150px;
+}
+
+#Exhibition-control-panel {
+    align-content: center;
+    background-color: #F5F4EF;
+    border: 1px solid #777777;
+    border-radius: 6px;
+    display: block;
+    height: auto;
+    margin-top: 50px;
+    padding: 20px;
+    width: 600px;
+}
+
+#Exhibition-control-panel a {
+    height: 40px;
+    margin: 10px;
+    padding: 5px;
+    width: 150px;
+}
