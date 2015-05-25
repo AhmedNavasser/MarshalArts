@@ -4,9 +4,8 @@
     ViewBag.Title = "PostDetails";
 }
 
-<div class="panel">
-    <h2 class="panel-heading">@Html.DisplayNameFor(model => model.PostTitle) : @Html.DisplayFor(item => Model.PostTitle)</h2>
-    <hr />
+<div class="panel panel-default">
+    <div class="panel-heading">@Html.DisplayNameFor(model => model.PostTitle) : @Html.DisplayFor(item => Model.PostTitle)</div>
     <article>@Html.Raw(Model.Content)</article>
     <hr />
     <p class="text-left">@Html.DisplayNameFor(item => Model.PublishDate) : @Html.DisplayFor(item => Model.PublishDate)</p>

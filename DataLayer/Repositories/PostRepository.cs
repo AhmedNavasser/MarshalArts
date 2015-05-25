@@ -53,12 +53,24 @@ namespace DataLayer.Repositories
             _context.SaveChanges();
         }
 
-        public async Task<int> EditPost (int? postId)
+        public async Task<int> EditPost (int? postId,Post newPost)
         {
             var postToUpdate = _posts.FirstOrDefault(p => p.PostId == postId);
-            _context.Entry(postToUpdate).State = EntityState.Modified;
+            if (postToUpdate != null)
+            {
+                postToUpdate.PostTitle = newPost.PostTitle;
+                postToUpdate.Content = newPost.Content;
+                postToUpdate.PublishDate = newPost.PublishDate;
+            }
+               
+
+            //_context.Entry(postToUpdate).State = EntityState.Modified;
             return await _context.SaveChangesAsync();
         }
 
+        public async Task<List<Post>> GetAllPostsByTermAsync(string term)
+        {
+            return await _posts.Where(p => p.PostTitle.StartsWith(term)).ToListAsync();
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿@model MartialArts.ViewModels.UserViewModel
+﻿@using Kendo.Mvc.UI
+@using MartialArts.Models
+@model MartialArts.ViewModels.UserViewModel
 @{
     ViewBag.Title = "ControlPanel";
 }
@@ -6,21 +8,78 @@
 <div>
     <h2>به پنل مدیریت خوش آمدید</h2>
 </div>
-
-<div id="user-information">
-    <p>خوش آمدید @Model.UserName</p>
-    <hr/>
-    <p>امروز @DateTime.Now</p>
+@section Scripts
+{
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">اطلاعات کاربری</div>
+    <div style="padding: 20px;">
+        <div class="navbar-left"><span></span><a href="~/Home/Index" class="fa fa-5x fa-home" style="text-decoration: none"></a></div>
+        <p>خوش آمدید @Model.UserName</p>
+        <hr />
+        <p>امروز @DateTime.Now.ToSolarDateTime() ساعت ورود @DateTime.Now.ToShortTimeString()</p>
+    </div>
 </div>
+@(Html.Kendo().PanelBar()
+.Name("PostControl")
+.Items(items =>
+{
+    items.Add()
+        .Text("کنترل پنل پستها")
+        .Expanded(false)
+        .Selected(false)
+        .Content(@<text>
+            <div style="padding: 50px;">
+                <div>
+                    @Html.ActionLink("ایجاد پست", "CreateNewPost", "Post", new { area = "Admin" }, new { @class = "btn btn-info" })
+                    <a data-toggle="modal" href="#edit-modal" class="btn btn-warning">ویرایش پست</a>
+                </div>
 
-<div id="control-panel">
-    @Html.ActionLink("ایجاد پست", "CreateNewPost", "Post", new {area = "Admin"}, new {@class = "btn btn-info"})
-    @Html.ActionLink("ویرایش پست", "EditPost", "Post", new {area = "Admin"}, new {@class = "btn btn-warning"})
-    @Html.ActionLink("حذف پست", "Index", "Admin", new {@class = "btn btn-danger"})
-</div>
+            </div>
+        </text>);
+    items.Add()
+        .Text("کنترل پنل جشنواره ها")
+        .Expanded(false)
+        .Selected(false)
+        .Content(@<text>
+            <div style="padding: 40px">
+                <div>
+                    @Html.ActionLink("ایجاد جشنواره", "CreateNewExhibition", "Exhibition", new { area = "Admin" }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("ویرایش جشنواره", "EditPost", "Post", new { area = "Admin" }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("حذف جشنواره", "Index", "Admin", new { @class = "btn btn-danger" })
+                </div>
+            </div>
+        </text>);
 
-<div id="Exhibition-control-panel">
-    @Html.ActionLink("ایجاد جشنواره", "CreateNewExhibition", "Exhibition", new {area = "Admin"}, new {@class = "btn btn-info"})
-    @Html.ActionLink("ویرایش جشنواره", "EditPost", "Post", new {area = "Admin"}, new {@class = "btn btn-warning"})
-    @Html.ActionLink("حذف جشنواره", "Index", "Admin", new {@class = "btn btn-danger"})
+
+
+}))
+
+<div class="modal" id="edit-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title">
+                    ویرایش پست
+                </h4>
+            </div>
+            <div class="modal-body" style="padding: 40px">
+                <div class="form-horizontal">
+                    <form method="GET" action="@Url.Action("SearchContent","Post",new{area="Admin"})">
+                        <div class="form-group">
+                            <p style="float: right">عنوان پست را وارد نمایید</p>
+                            <input type="search" name="term" class="form-control" style="float: right;margin-right: 10px;" />
+                            <button id="search-btn" class="btn btn-default" style="float: right; margin-right: 10px;">جستجو</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" data-dismiss="modal" class="btn">بستن</a> 
+            </div>
+        </div>
+    </div>
 </div>

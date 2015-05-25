@@ -1,37 +1,52 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - وب سایت رسمی باشگاه الغدیر</title>
-    <script src="~/Scripts/modernizr-2.8.3.js"></script>
-    <link href="~/Content/bootstrap-rtl.min.css" rel="stylesheet"/>
-    <link href="~/Content/Master.css" rel="stylesheet"/>
-    <link href="~/Content/font-awesome.css" rel="stylesheet"/>
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css")
+
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div>
-            <nav class="nav navbar navbar-inverse">
-                <div class="nav navbar-inner">
-                    @Html.ActionLink("خانه", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
-                    @Html.ActionLink("مدیریت", "ControlPanel", "Admin", new {area = "Admin"}, new {@class = "navbar-brand navbar-left", @id = "admin-area"})
-                </div>
+    <div class="container">
+        <div class="row">
+            <div>
+                <nav class="nav navbar navbar-inverse">
+                    <div class="nav navbar-inner">
+                        @Html.ActionLink("خانه", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("جشنواره ها", "Index", "Exhibition", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("مدیریت", "ControlPanel", "Admin", new { area = "Admin" }, new { @class = "navbar-brand", @id = "admin-area" })
 
-            </nav>
+                        <form class="navbar-form navbar-left" method="GET" action="@Url.Action("SearchContent","Home")">
+                            <div class="input-group">
+                                <input type="search" name="term" class="form-control"/>
+                                <span class="input-group-btn">
+                                    <button id="search-btn" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </nav>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="container body-content">
-    @RenderBody()
-</div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
 
-<script src="~/Scripts/jquery-2.1.3.min.js"></script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
-@RenderSection("GalleryScript", false)
-@RenderSection("scripts", false)    
+
+    <script src="~/Scripts/Jssor/jssor.js"></script>
+    <script src="~/Scripts/Jssor/jssor.slider.min.js"></script>
+
+    @RenderSection("GalleryScript", false)
+    @RenderSection("scripts", false)
 </body>
 </html>

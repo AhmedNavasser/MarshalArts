@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.Routing;
 using DataLayer.Infrastructure;
 using DataLayer.Migrations;
@@ -22,7 +23,7 @@ namespace MartialArts
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             ControllerBuilder.Current.SetControllerFactory(new CustomControllerFactory());
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<MartialArtsContext, Configuration>());
-            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MartialArtsContext>());
+            BundleConfig.RegisterBundle(BundleTable.Bundles);
         }
     }
 }

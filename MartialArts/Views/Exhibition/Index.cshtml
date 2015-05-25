@@ -1,0 +1,42 @@
+﻿@model MartialArts.ViewModels.ExhibitionViewModel
+
+<div class="row container-fluid">
+
+    <div class="col-lg-3 " id="exhibition-titles">
+        <div class="panel panel-default">
+            <div class="panel-heading">عناوین جشنواره ها</div>
+            @foreach (var item in Model.Exhibitions)
+            {
+                <div style="padding: 10px">
+                    @Ajax.ActionLink(item.Title, "GetExhibition", new { id = item.Id }, new AjaxOptions
+                {
+                    UpdateTargetId = "exhibition-details",
+                    InsertionMode = InsertionMode.Replace
+                }, new { @class = "link" })
+                </div>
+            }
+        </div>
+    </div>
+    @section scripts
+    {
+        <script>
+            $(function() {
+                $("#exhibition-titles a").click(function() {
+
+                    $.ajax({
+                        url: @Url.Action("GetExhibition", new {id = Model.Exhibition.Id}),
+                        contentType: 'application/html; charset=utf-8',
+                        type: "POST",
+                        dataType: 'html'
+                    }).success(function(result) {
+                        $("#exhibition-details").html(result);
+                    });
+                });
+            });
+        </script>
+    }
+    <div class="col-lg-9" id="exhibition-details">
+        @Html.Partial("_ExhibitionDetails", Model.Exhibition)
+    </div>
+</div>
+

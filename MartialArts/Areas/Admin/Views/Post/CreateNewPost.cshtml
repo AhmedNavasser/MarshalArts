@@ -4,85 +4,104 @@
     ViewBag.Title = "ایجاد پست جدید";
 }
 
-<h2>پست جدید</h2>
 
-@using (Html.BeginForm("CreateNewPost", "Post"))
-{
-    @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.PostTitle, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PostTitle, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PostTitle, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="panel panel-primary">
+    <div class="panel-heading">پست جدید</div>
+    <div style="padding: 20px">
+        @using (Html.BeginForm("CreateNewPost", "Post", FormMethod.Post, new { id = "froalaForm" }))
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
-            @Html.TextAreaFor(model => model.Content, new { @class = "form-control", @id = "editor" })
-            @section Scripts
-                {
-                <script type="text/javascript">
-                    $(function () {
-                        $('#editor').editable(
-                            {
-                                inlineMode: false,
-                                buttons: [
-                                    "bold", "italic", "underline", "strikeThrough", "fontFamily",
-                                    "fontSize", "color", "formatBlock", "align", "insertOrderedList",
-                                    "insertUnorderedList", "outdent", "indent", "selectAll", "createLink",
-                                    "insertImage", "insertVideo", "undo", "redo", "html", "save", "inserthorizontalrule"
-                                ],
-                                inverseSkin: true,
-                                preloaderSrc: '@Url.Content("~/Content/img/preloader.gif")',
-                                allowedImageTypes: ["jpeg", "jpg", "png"],
-                                height: 300,
-                                language: "fa",
-                                direction: "rtl",
-                                fontList: ["Tahoma, Geneva", "Arial, Helvetica", "Impact, Charcoal"],
-                                autosave: true,
-                                autosaveInterval: 2500,
-                                saveURL: '@Url.Action("FroalaAutoSave", "Post")',
-                                saveParams: { postId: "123" },
-                                spellcheck: true,
-                                plainPaste: true,
-                                imageButtons: ["removeImage", "replaceImage", "linkImage"],
-                                borderColor: '#00008b',
-                                imageUploadURL: '@Url.Action("FroalaUploadImage", "Post")',
-                                imageParams: { postId: "123" },
-                                enableScript: false
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PostTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PostTitle, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PostTitle, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.TextAreaFor(model => model.Content, new { @class = "form-control", @id = "editor" })
+                    @section Scripts
+                    {
+                        <script type="text/javascript">
+                            // حذف تمام تگ‌هاي يك قطعه متن
+                            function removeAllTagsAndTrim(html) {
+                                return !html ? "" : jQuery.trim(html.replace(/(<([^>]+)>)/ig, ""));
                             }
-                        );
-                    });
-                </script>
-            }
+
+                            // اين تنظيم براي پردازش اعتبارسنجي اديتور مخفي وب لازم است
+                            jQuery.validator.setDefaults({ ignore: ":hidden:not(textarea)" });
+
+                            // متد اصلي اعتبارسنجي را ابتدا ذخيره مي‌كنيم
+                            jQuery.validator.methods.originalRequired = jQuery.validator.methods.required;
+                            // نحوه بازنويسي متد توكار اعتبار سنجي جهت استفاده از يك متد سفارشي
+                            jQuery.validator.addMethod("required", function (value, element, param) {
+                                value = removeAllTagsAndTrim(value);
+                                if (!value) {
+                                    $(".froala-element").focus();
+                                    $(".froala-element").css({ "border-color": "red" });
+                                    return false;
+                                }
+                                //  فراخواني متد اصلي اعتبار سنجي در صورت شكست تابع سفارشي
+                                return jQuery.validator.methods.originalRequired.call(this, value, element, param);
+                            }, jQuery.validator.messages.required);
+                        </script>
+
+
+                        <script type="text/javascript">
+                            $(function () {
+                                $('#editor').editable({
+                                    buttons: ["bold", "italic", "underline", "strikeThrough", "fontFamily",
+                                        "fontSize", "color", "formatBlock", "align", "insertOrderedList",
+                                        "insertUnorderedList", "outdent", "indent", "selectAll", "createLink",
+                                        "uploadFile",
+                                        "insertImage", "insertVideo", "undo", "redo", "html", "save", "inserthorizontalrule"],
+                                    inlineMode: false,
+                                    inverseSkin: true,
+                                    preloaderSrc: '@Url.Content("~/Content/images/preloader.gif")',
+                                    allowedImageTypes: ["jpeg", "jpg", "png"],
+                                    height: 300,
+                                    language: "fa",
+                                    direction: "rtl",
+                                    fontList: ["Tahoma, Geneva", "Arial, Helvetica", "Impact, Charcoal"],
+                                    autosave: true,
+                                    autosaveInterval: 2500,
+                                    saveURL: '@Url.Action("FroalaAutoSave", "Post")',
+                                    saveParams: { postId: "123" },
+                                    spellcheck: true,
+                                    plainPaste: true,
+                                    imageButtons: ["removeImage", "replaceImage", "linkImage"],
+                                    borderColor: '#00008b',
+                                    imageUploadURL: '@Url.Action("FroalaUploadImage", "Post")',
+                                    imageParams: { postId: "123" },
+                                    enableScript: false,
+                                    fileUploadURL: '@Url.Action("FroalaUploadFile", "Post")',
+                                    fileUploadParams: { postId: "123" }
+                                });
+                            });
+                        </script>
+                    }
 
 
 
-            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
 
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PublishDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PublishDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PublishDate, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="ایجاد پست" class="btn btn-info btn-lg navbar-left" />
+                        @Html.ActionLink("برگشت به پنل مدیریت", "ControlPanel", "Admin", new { area = "Admin" }, new { @class = "btn btn-warning btn-lg", @style = "float: left;margin-left: 10px;" })
+                    </div>
+                </div>
             </div>
-        </div>
-        <hr />
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="ایجاد پست" class="btn btn-info" />
-            </div>
+        }
+
+        <div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("برگشت به پنل مدیریت", "ControlPanel", "Admin", new { area = "Admin" }, new { @class = "btn btn-success btn-lg" })
 </div>

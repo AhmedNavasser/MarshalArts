@@ -1,0 +1,23 @@
+﻿@using MartialArts.Infrastructure.Helpers
+@model DomainModel.Exhibition
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.Title</div>
+    <div>
+        @Model.Description
+    </div>
+    <hr/>
+    <div id="photos">
+        @foreach (var item in Model.Images)
+        {
+            @Html.Image(@Url.Content(item.ImagePath), item.ImagePath, new { @style = "height:300px" })
+            
+            <br/>
+        }
+    </div>
+
+</div>
+
+
+

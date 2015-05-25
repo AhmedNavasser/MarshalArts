@@ -29,6 +29,7 @@ namespace MartialArts.Infrastructure
             _kernel.Bind<IMartialArtsContext>().To<MartialArtsContext>();
             _kernel.Bind<IPostRepository>().To<PostRepository>();
             _kernel.Bind<IUserRepository>().To<UserRepository>();
+            _kernel.Bind<IExhibitionRepository>().To<ExhibitionRepository>();
             _kernel.Bind<IAuthenticationProvider>().To<AuthenticationProvider>();
         }
     }

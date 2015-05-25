@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DomainModel.Post>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PostTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PublishDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostTitle)
+            </td>
+            <td>
+                @Html.Raw(item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PublishDate)
+            </td>
+            <td>
+                @Html.ActionLink("ویرایش", "EditPost", new {id = item.PostId}, new {@class = "btn btn-warning"}) |
+                @Html.ActionLink("حذف", "SearchContent", "Post", null, null, "delete-modal", null, new {@class = "btn btn-warning"})
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="modal" id="delete-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title">
+                    حذف پست
+                </h4>
+            </div>
+            <div class="modal-body" style="padding: 40px">
+                <div class="form-horizontal">
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" data-dismiss="modal" class="btn">بستن</a>
+            </div>
+        </div>
+    </div>
+</div>

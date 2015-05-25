@@ -1,15 +1,79 @@
 ﻿@using MartialArts.Infrastructure.Helpers
 @model IEnumerable<DomainModel.Post>
-@{
-    ViewBag.Title = "Index";
-}
 
 
+
+<div class=" row container item-background" style="border: 1px solid gainsboro; padding: 3px; border-radius: 3px;">
+    <div class="row " >
+        <div id="slider1_container" class="col-lg-12" style="position: relative;width: 600px;height: 400px;margin-right: 15%; margin-left: 30%;">
+            <div class="col-lg-12" u="slides" style="cursor: move; position: absolute; width: 600px;height: 400px;overflow: hidden; ">
+                <div>@Html.Image(@Url.Content("~/Content/Images/AgraFort_EN-US10821412273_1920x1200.jpg"), "Test", new { style = "height:390px;" })</div>
+                <div>@Html.Image(@Url.Content("~/Content/Images/Aquarius_EN-US11826037816_1920x1200.jpg"), "Test", new { style = "width:1000px;height:390px;" })</div>
+                <div>@Html.Image(@Url.Content("~/Content/Images/AvonRiver_1920x1200.jpg"), "Test", new { style = "width:1000px;height:390px;" })</div>
+                <div>@Html.Image(@Url.Content("~/Content/Images/BaltimoreSkyline_1920x1200.jpg"), "Test", new { style = "width:1000px;height:390px;" })</div>
+                <div>@Html.Image(@Url.Content("~/Content/Images/BaulhagallaaIsland_1920x1200.jpg"), "Test", new { style = "width:1000px;height:390px;" })</div>
+                <div>@Html.Image(@Url.Content("~/Content/Images/CapeCanaveralLightning_1920x1200.jpg"), "Test", new { style = "width:1000px;height:390px;" })</div>
+                <div>@Html.Image(@Url.Content("~/Content/Images/CavoGreko_1920x1200.jpg"), "Test", new { style = "width:1000px;height:390px;" })</div>
+                <div>@Html.Image(@Url.Content("~/Content/Images/RioTinto_EN-US13328982091_1920x1200.jpg"), "Test", new { style = "width:1000px;height:390px;" }) </div>
+                <div>@Html.Image(@Url.Content("~/Content/Images/HumorHay_EN-US11087626883_1920x1200.jpg"), "Test", new { style = "width:1000px;height:390px;" }) </div>
+                <div>@Html.Image(@Url.Content("~/Content/Images/RockyMountainNP_EN-US9852595338_1920x1200.jpg"), "Test", new { style = "width:1000px;height:390px;" })  </div>
+                <!-- Arrow Left -->
+                <span u="arrowleft" class="jssora03l" style="top: 123px; left: 8px;">
+                </span>
+                <!-- Arrow Right -->
+                <span u="arrowright" class="jssora03r" style="top: 123px; right: 8px;">
+                </span>
+            </div>
+
+
+
+        </div>
+    </div>
+    <hr/>
+    <div id="all-content">
+        <div class="row">
+            <div id="post-content" class="col-lg-10">
+                @Html.Partial("_PostContent", Model)
+            </div>
+
+            <div id="content-title" class="col-lg-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><span class="fa fa-book"></span> عناوین مطالب</div>
+                    <table class="table">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.ActionLink(item.PostTitle, "PostDetails", new { id = item.PostId })</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 @section scripts{
     <script>
+        jQuery(document).ready(function ($) {
+            var options = {
+                $AutoPlay: true,
+                $AutoPlayInterval: 2500,
+                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+                $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
+                    $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
+                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                    $AutoCenter: 0,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                    $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
+                }
+            };
+
+            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+        });
+
         $(function () {
             $.ajax({
-                url: '/Home/Index',
+                url: @Url.Action("Index","Home"),
                 contentType: 'application/html; charset=utf-8',
                 type: "GET",
                 dataType: 'html'
@@ -19,45 +83,7 @@
         });
     </script>
 }
-
-
-
-<div id="slider1_container" class="row container">
-    گالری عکس
-    <div class="photo-gallery col-lg-12">
-
-
-        @Html.Image(@Url.Content("~/Content/Images/Kg.jpg"), "Panda", new { @style = "height: 400px; width: 300px;" })
-    </div>
-</div>
-
-<div id="all-content" class="row container">
-    <div id="exhibition" class="col-lg-2">
-
-        جشنواره
-    </div>
-
-     
-    <div id="post-content" class="col-lg-8">
-        @Html.Partial("_PostContent", Model)
-
-
-</div>
-
-        <div id="content-title" class="col-lg-2">
-            عناوین مطالب
-            <table class="table">
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@Html.ActionLink(item.PostTitle, "PostDetails", new { id = item.PostId })</td>
-                    </tr>
-                }
-            </table>
-        </div>
-    </div>
-
-<div class="row">&copy;@DateTime.Now.Year باشگاه الغدیر</div>
+<div class="row text-center">&copy;@DateTime.Now.Year @Html.ActionLink("باشگاه الغدیر", "Index") </div>
 
 
 

@@ -2,17 +2,12 @@
 
     @foreach (var item in Model)
     {
-        <div id="post">
-            <table class="table">
-                <tr>
-                    <td class="text-right" id="post-title">
-                        @Html.ActionLink(item.PostTitle, "PostDetails", null, new {id = item.PostId}, new {@style = "color:cornflowerblue;text-decoration:none"})
-                    </td>
-                    <td class="text-left">
-                        @Html.DisplayFor(itemData => item.PublishDate)
-                    </td>
-                </tr>
-            </table>
+        <div class="panel panel-default">
+            
+            <div class="panel-heading text-right">
+                @Html.ActionLink(item.PostTitle, "PostDetails", new {id = item.PostId})
+                <p class="text-left" style="float: left">@Html.DisplayFor(itemData => item.PublishDate)</p>
+            </div>
             <table class="table">
                 <tr>
                     <td>
@@ -21,4 +16,5 @@
                 </tr>
             </table>
         </div>
+
     }

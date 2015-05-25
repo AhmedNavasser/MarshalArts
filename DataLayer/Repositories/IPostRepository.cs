@@ -10,6 +10,7 @@ namespace DataLayer.Repositories
         Task<int> AddNewPostAsync(Post post);
         Post GetPost(int? id);
         void DeletePost(int? postId);
-        Task<int> EditPost(int? postId);
+        Task<int> EditPost(int? postId,Post newPost);
+        Task<List<Post>> GetAllPostsByTermAsync(string term);
     }
 }

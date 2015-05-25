@@ -1,4 +1,8 @@
-﻿body {
+﻿@font-face {
+    font-family: 'BYekan';
+    src: url('../fonts/BYekan.woff') format('woff');
+}
+body {
     background-image: url('Images/halftone5.jpg');
     direction: rtl;
     font-family: 'B Mitra';
@@ -7,21 +11,22 @@
     padding-top: 50px;
 }
 
-#header {
-    background-color: #243044;
-    height: 45px;
-    margin-top: -30px;
-    padding: 4px 0 0 0;
-    width: 100%;
+.header {
+    background: linear-gradient(to top, dodgerblue,dodgerblue);
 }
 
 a {
-    font-family: 'B Yekan';
-    font-size: 20px;
+    font-family: 'BYekan';
+    text-decoration: none;
 }
 
+    a:hover {
+        text-decoration: none;
+    }
+
 .link {
-    background-color: deepskyblue;
+    font-size: 12px;
+    background: linear-gradient(to top,darkturquoise,darkturquoise);
     border-radius: 3px;
     color: white;
     margin-right: 5px;
@@ -31,14 +36,15 @@ a {
     top: 4px;
 }
 
-.link:hover {
-    background-color: dodgerblue;
-    color: white;
-    margin-right: 5px;
-    margin-top: 4px;
-    padding: 4px 18px;
-    text-decoration: none;
-}
+    .link:hover {
+        font-size: 12px;
+        background: linear-gradient(to top,dodgerblue,dodgerblue);
+        color: white;
+        margin-right: 5px;
+        margin-top: 4px;
+        padding: 4px 18px;
+        text-decoration: none;
+    }
 
 .home {
     background-color: darkorchid;
@@ -51,20 +57,20 @@ a {
     top: 4px;
 }
 
-.home:hover {
-    background-color: blueviolet;
-    color: white;
-    margin-right: 5px;
-    margin-top: 4px;
-    padding: 4px 18px;
-    text-decoration: none;
-}
+    .home:hover {
+        background-color: blueviolet;
+        color: white;
+        margin-right: 5px;
+        margin-top: 4px;
+        padding: 4px 18px;
+        text-decoration: none;
+    }
 
 /* Set padding to keep content from hitting the edges */
 
 .body-content {
     font-family: 'B Mitra';
-    font-size: 20px;
+    font-size: 18px;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -77,43 +83,80 @@ textarea {
     font-family: 'Tahoma';
     max-width: 280px;
 }
-
-#slider1_container {
-    background-color: #FFFAFA;
-    border: 1px solid #F5F4EF;
-    border-radius: 4px;
+/*Photo Gallery*/
+.jssora03l, .jssora03r {
+    display: block;
+    position: absolute;
+    /* size of arrow element */
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    background-image: url('Images/a03.png');
+    overflow: hidden;
 }
 
-#exhibition {
+.jssora03l {
+    background-position: -3px -33px;
+}
+
+.jssora03r {
+    background-position: -63px -33px;
+}
+
+.jssora03l:hover {
+    background-position: -123px -33px;
+}
+
+.jssora03r:hover {
+    background-position: -183px -33px;
+}
+
+.jssora03l.jssora03ldn {
+    background-position: -243px -33px;
+}
+
+.jssora03r.jssora03rdn {
+    background-position: -303px -33px;
+}
+
+/*End of Photo Gallery*/
+.panel-heading-background {
+    background-color: slategrey;
+}
+.item-background {
     background-color: #FFFAFA;
     border: 1px solid #F5F4EF;
     border-radius: 4px;
     /*box-shadow: 0 10px 6px -6px #777;*/
 }
 
-#post-content {
-    background-color: #FFFAFA;
-    border: 1px solid #F5F4EF;
-    border-radius: 4px;
+#post-content a {
+    color: #696969;
+    text-decoration: none;
 }
 
-#content-title {
-    background-color: #FFFAFA;
-    border: 1px solid #F5F4EF;
-    border-radius: 4px;
-    /*box-shadow: 0 10px 6px -6px #777;*/
-}
+    #post-content a:hover {
+        color: #243044;
+        text-decoration: none;
+    }
 
 #content-title a {
-    font-family: 'B Yekan';
+    font-family: 'BYekan';
     font-size: 12px;
 }
+
+    #content-title a:hover {
+        font-family: 'BYekan';
+        font-size: 12px;
+        text-decoration: none;
+        color: #243044;
+    }
 
 #post {
     background-color: white;
     border: 1px solid darkgray;
     border-radius: 6px;
-    font-family: B Yekan;
+    font-family: 'BYekan';
     font-size: 12px;
     margin: 4px;
 }
@@ -121,14 +164,14 @@ textarea {
 
 
 #user-info {
-    background-color: #F5F4EF;
-    border: 1px solid #777777;
-    border-radius: 6px;
+    padding: 10px;
+}
+
+#management-panel {
     height: auto;
+    width: 280px;
     margin: 10% 30%;
-    padding: 20px;
     position: absolute;
-    width: 250px;
 }
 
 #user-information {
@@ -154,12 +197,12 @@ textarea {
     width: 600px;
 }
 
-#control-panel a {
-    height: 40px;
-    margin: 10px;
-    padding: 5px;
-    width: 150px;
-}
+    #control-panel a {
+        height: 40px;
+        margin: 10px;
+        padding: 5px;
+        width: 150px;
+    }
 
 #Exhibition-control-panel {
     align-content: center;
@@ -173,9 +216,21 @@ textarea {
     width: 600px;
 }
 
-#Exhibition-control-panel a {
-    height: 40px;
-    margin: 10px;
-    padding: 5px;
-    width: 150px;
+    #Exhibition-control-panel a {
+        height: 40px;
+        margin: 10px;
+        padding: 5px;
+        width: 150px;
+    }
+
+/*Exhibition Css*/
+#photo-gallery {
+    direction: ltr;
+    margin: 20px;
+}
+
+#photos img {
+    position: relative;
+    margin-right: 20%;
+    margin-top: 10px;
 }

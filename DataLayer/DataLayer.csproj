@@ -44,7 +44,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\ImageModelBuilder.cs" />
     <Compile Include="Infrastructure\IMartialArtsContext.cs" />
     <Compile Include="Infrastructure\MartialArtsContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />

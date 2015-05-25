@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using DataLayer.Infrastructure;
 using DomainModel;
@@ -25,6 +27,12 @@ namespace DataLayer.Repositories
         {
             var exhibition = await _exhibitions.FirstOrDefaultAsync(ex => ex.Id == id);
             return exhibition;
+        }
+
+        public async Task<List<Exhibition>> GetAllExhibitionTitles()
+        {
+            var query = await _exhibitions.OrderByDescending(e => e.Id).ToListAsync();
+            return query;
         }
     }
 }

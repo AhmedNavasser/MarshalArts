@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace DomainModel
@@ -21,6 +17,6 @@ namespace DomainModel
         public string Content { get; set; }
         [DataType(DataType.Date)]
         [Display(Name = "تاریخ نشر")]
-        public DateTime PublishDate { get; set; }
+        public string PublishDate { get; set; }
     }
 }
